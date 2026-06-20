@@ -1,14 +1,9 @@
-# Streamlit 대시보드 런타임 의존성 (serve.py는 CSV에서 최신 피처를 읽으므로 라이브 fetch 불필요)
 streamlit
 torch
 numpy
 pandas
 matplotlib
-scikit-learn==1.6.1   # Colab에서 스케일러를 저장한 버전과 일치(버전 경고/불일치 방지)
-scipy
+scikit-learn==1.6.1
+scipy>=1.11
 joblib
-
-# 데이터 재생성(STEP1 재실행)용 — 대시보드 런타임엔 불필요, 로컬에서만:
-# hmmlearn
-# fredapi
-# finance-datareader
+altair
