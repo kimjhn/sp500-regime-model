@@ -158,7 +158,7 @@ def main():
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     total.to_csv(OUTPUT_PATH)
-    print(f"\n✅ 저장 완료: {OUTPUT_PATH}")
+    print(f"\n저장 완료: {OUTPUT_PATH}")
     print(f"   기간 {total.index.min().date()} ~ {total.index.max().date()}")
     print(f"   행수 {len(total)}, 컬럼 {len(total.columns)}")
 

@@ -220,7 +220,7 @@ risk_off = float(probs_now[list(C.RISK_OFF_REGIMES)].sum())
 exposure = float(probs_now @ ladder)
 
 st.subheader(f"향후 약 20거래일 전망  ·  기준일 {pd.Timestamp(as_of).date()}")
-st.caption("🔄 데이터는 **매일 한국시간 08:00**에 자동 갱신됩니다 (FRED + SPY → GitHub Actions → Streamlit Cloud 재배포).")
+st.caption("데이터는 매일 한국시간 08:00에 자동 갱신됩니다 (FRED + SPY → GitHub Actions → Streamlit Cloud 재배포).")
 st.markdown(
     f"<div style='text-align:center;padding:22px 12px;border-radius:18px;"
     f"background:{COLOR[top]}1f;border:1px solid {COLOR[top]}66;margin-bottom:10px;'>"
@@ -334,7 +334,7 @@ else:
                f"{m_bh['CAGR']:.1%})은 클 수 있지만 레버리지·고비중은 하락도 키웁니다. 하락 국면 비중을 "
                "낮추면 방어가 살아납니다.")
 
-with st.expander("📐 지표 읽는 법 (좋고 나쁨 기준)"):
+with st.expander("지표 읽는 법 (좋고 나쁨 기준)"):
     st.markdown(
         "- **CAGR (연수익률)**: 연평균 복리 수익률. S&P500 장기 평균 ≈ **7~10%**. 높을수록 좋음.\n"
         "- **MDD (최대 낙폭)**: 고점 대비 최대 하락. 0에 가까울수록 좋음. 주식 장기보유는 보통 "
@@ -343,7 +343,7 @@ with st.expander("📐 지표 읽는 법 (좋고 나쁨 기준)"):
         "- **Sharpe = 초과수익 ÷ 변동성**: 출렁임 대비 수익. **1.0 이상 좋음, 2.0 이상 매우 우수, "
         "0 미만이면 손실.**")
 
-with st.expander("❓ Buy&Hold가 총수익에서 앞서면 의미가 없나요? (꼭 읽어보세요)"):
+with st.expander("Buy&Hold가 총수익에서 앞서면 의미가 없나요?"):
     if avg_w < 0.99:
         invest_line = (f"- 이 전략은 **항상 100% 투자하지 않습니다**(현재 사다리 평균 약 {avg_w:.0%}). 그래서 "
                        "**상승장이 오래가면 총수익은 일부 포기**합니다 — 이것이 '방어의 대가(보험료)'입니다.")

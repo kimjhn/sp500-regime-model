@@ -6,13 +6,13 @@
 
 ---
 
-## 🌐 라이브 데모
+## 라이브 데모
 
 [https://sp500-regime-model-gd7hfauyspnwtgm59lhxic.streamlit.app/]
 
 ---
 
-## ✨ 핵심 특징
+## 핵심 특징
 
 - **HMM 레짐 라벨링** — 미래 20일 가격 행동을 5개 레짐(강한하락/약한하락/중립/약한상승/강한상승)으로 요약
 - **Two-Track 딥러닝** — GRU(과거 60일 주가) + MLP(매크로 6개) + Attention Late-Fusion → Softmax(5)
@@ -24,7 +24,7 @@
 
 ---
 
-## 🚀 빠른 시작 — 대시보드 실행 (5분)
+## 빠른 시작 — 대시보드 실행
 
 ### 1) 환경 준비
 
@@ -66,7 +66,7 @@ streamlit run streamlit_app.py
 
 ---
 
-## 📂 프로젝트 구조
+## 프로젝트 구조
 
 ```
 streamlit_app.py                       # 메인 대시보드
@@ -104,7 +104,7 @@ HMM_Regime_Detection/
 
 ---
 
-## 🔁 처음부터 재현하기 (전체 파이프라인)
+## 처음부터 재현하기
 
 ### STEP 1 — HMM 레짐 라벨 생성
 
@@ -116,7 +116,7 @@ HMM_Regime_Detection/
 3. 모든 셀 순차 실행
 4. **산출물:** `Deep/data/sp500_regime_dataset_final.csv` 생성
 
-> ⚠️ 매크로 데이터는 시점마다 *개정(revision)* 될 수 있으므로, 재실행 시점에 따라 데이터셋이 약간 달라질 수 있습니다 (이는 시계열의 본질적 특성이며 ALFRED `first_release` 사용으로 *결정 시점의* 데이터는 보존됩니다).
+> 주의: 매크로 데이터는 시점마다 *개정(revision)* 될 수 있으므로, 재실행 시점에 따라 데이터셋이 약간 달라질 수 있습니다 (이는 시계열의 본질적 특성이며 ALFRED `first_release` 사용으로 *결정 시점의* 데이터는 보존됩니다).
 
 ### STEP 2 — 딥러닝 모델 학습
 
@@ -149,7 +149,7 @@ python Deep/code/retrain_deploy.py
 
 ---
 
-## 📊 데이터 출처
+## 데이터 출처
 
 | 종류 | 출처 | 라이선스 |
 |------|------|---------|
@@ -163,7 +163,7 @@ python Deep/code/retrain_deploy.py
 
 ---
 
-## 🧪 재현성 보장 요소
+## 재현성
 
 - **고정 시드:** `SEED=42` (config.py), 앙상블 시드 `[0,1,2]` (retrain_deploy.py)
 - **스케일러 버전 핀:** `scikit-learn==1.6.1` — 저장 pickle 호환 보장
@@ -173,7 +173,7 @@ python Deep/code/retrain_deploy.py
 
 ---
 
-## ⚠️ 한계 / 알려진 제약
+## 한계
 
 - **대시보드 백테스트는 in-sample** (배포 모델이 1999~ 전체 학습됨). 엄밀한 OOS 평가는 `STEP2_DeepLearning.ipynb`의 2022+ 테스트셋 결과 참조.
 - v1 모델은 *가격 행동의 심각도*만 분류 — 구조적/일회성 원인 구분은 **v2 NFCI 오버레이**가 보조.
@@ -183,7 +183,7 @@ python Deep/code/retrain_deploy.py
 
 ---
 
-## 🧠 아키텍처 한눈에
+## 아키텍처
 
 ```
 [미래 t+1~t+20 주가] ──► HMM(5) ──► regime_label[t]      ← 딥러닝 정답 Y
@@ -206,13 +206,13 @@ NFCI + ΔNFCI_20d ──► sigmoid ──► structural_score (구조적 vs 일
 
 ---
 
-## 📜 라이선스
+## 라이선스
 
 **MIT License** — 자세한 내용은 [LICENSE](LICENSE) 파일 참조.
 
 ---
 
-## 📝 참고
+## 참고
 
 - 본 프로젝트는 학술 과제로 작성되었습니다.
 - 투자 의사결정의 참고용이며, 손익 책임은 사용자에게 있습니다.

@@ -35,7 +35,7 @@ jobs:
             git add Deep/data/sp500_regime_dataset_final.csv
             git commit -m "chore: 데이터셋 자동 갱신 ($(date -u +%Y-%m-%d))"
             git push
-            echo "✅ Pushed updated CSV"
+            echo "Pushed updated CSV"
           else
-            echo "ℹ️  No CSV changes today — skipping commit"
+            echo "No CSV changes today, skipping commit"
           fi
