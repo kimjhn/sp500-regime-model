@@ -8,7 +8,7 @@
 
 ## 🌐 라이브 데모
 
-(Streamlit Cloud 배포 후 URL 추가 예정)
+[https://sp500-regime-model-gd7hfauyspnwtgm59lhxic.streamlit.app/]
 
 ---
 
@@ -208,7 +208,7 @@ NFCI + ΔNFCI_20d ──► sigmoid ──► structural_score (구조적 vs 일
 
 ## 📜 라이선스
 
-(추가 예정 — 학술 과제 제출용)
+**MIT License** — 자세한 내용은 [LICENSE](LICENSE) 파일 참조.
 
 ---
 

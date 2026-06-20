@@ -220,6 +220,7 @@ risk_off = float(probs_now[list(C.RISK_OFF_REGIMES)].sum())
 exposure = float(probs_now @ ladder)
 
 st.subheader(f"향후 약 20거래일 전망  ·  기준일 {pd.Timestamp(as_of).date()}")
+st.caption("🔄 데이터는 **매일 한국시간 08:00**에 자동 갱신됩니다 (FRED + SPY → GitHub Actions → Streamlit Cloud 재배포).")
 st.markdown(
     f"<div style='text-align:center;padding:22px 12px;border-radius:18px;"
     f"background:{COLOR[top]}1f;border:1px solid {COLOR[top]}66;margin-bottom:10px;'>"
