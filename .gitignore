@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.streamlit/secrets.toml
+.DS_Store
+
+# 모델 가중치(.pt)는 직접 커밋 (총 ~700KB, LFS 불필요).

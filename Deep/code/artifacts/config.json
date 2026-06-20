@@ -1,0 +1,70 @@
+{
+  "track1_feats": [
+    "log_return",
+    "log_vol_5d",
+    "log_vol_20d",
+    "log_vol_60d",
+    "vol_ratio_5_20",
+    "vol_ratio_5_60",
+    "sma_gap_20d",
+    "sma_gap_60d",
+    "sma_gap_200d",
+    "rsi_14",
+    "macd_pct",
+    "macd_hist"
+  ],
+  "track2_feats": [
+    "M2_YOY",
+    "NFCI",
+    "YIELD_SPREAD_diff",
+    "CPI_YOY",
+    "DEBT_EQUITY_diff",
+    "LOAN_DEPOSIT"
+  ],
+  "seq_len": 60,
+  "horizon": 20,
+  "n_regimes": 5,
+  "model_kwargs": {
+    "gru_hidden": 64,
+    "gru_layers": 2,
+    "fusion_dim": 32,
+    "dropout": 0.4
+  },
+  "ensemble_seeds": [
+    0,
+    1,
+    2
+  ],
+  "temperatures": {
+    "0": 1.439549446105957,
+    "1": 1.155318260192871,
+    "2": 1.2232381105422974
+  },
+  "best_epochs": {
+    "0": 38,
+    "1": 9,
+    "2": 19
+  },
+  "class_weights": [
+    2.4194138050079346,
+    1.3105158805847168,
+    1.179464340209961,
+    0.6675088405609131,
+    0.6767417788505554
+  ],
+  "splits": {
+    "phaseA_train_end": "2021-12-31",
+    "phaseA_val_start": "2022-01-01",
+    "phaseB": "all-data fixed-epoch retrain (1999~2026)"
+  },
+  "hparams": {
+    "gru_hidden": 64,
+    "gru_layers": 2,
+    "fusion_dim": 32,
+    "dropout": 0.4,
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "batch_size": 64
+  },
+  "deploy_note": "2-phase deploy retrain. Phase A: epoch count + temperature found on 1999-2021 train / 2022-2026 val (all 5 regimes). Phase B: retrained on ALL labeled data for those epochs; temperature reused from Phase A. Evaluation metrics (2022+ OOS) are in STEP2 notebook."
+}
