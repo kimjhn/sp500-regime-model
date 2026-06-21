@@ -80,6 +80,7 @@ Deep/
 │   ├── model.py                       # RegimePredictor (GRU+MLP+Attention)
 │   ├── train.py                       # 학습 + Temperature scaling
 │   ├── evaluate.py                    # 평가 메트릭
+│   ├── baselines.py                   # 비교 기준 모델 (다수결·지속·로지스틱·XGB)
 │   ├── backtest.py                    # 확률가중 백테스트
 │   ├── serve.py                       # 라이브 추론 + 개인화
 │   ├── event_overlay.py               # v2 NFCI 보조 지표
@@ -98,9 +99,13 @@ HMM_Regime_Detection/
 │   └── HMM_Regime_Detection_v2 (1).ipynb  # STEP 1 노트북 (HMM 레짐 라벨 생성)
 ├── output/
 │   ├── regime_final.png               # 5색 레짐 시각화
-│   └── sp500_regime_dataset_final.csv # 사본 (Deep/data와 동일)
-└── sp500_regime_dataset_final.csv     # 사본
+│   └── sp500_regime_dataset_final.csv # STEP 1 라벨 원본
+└── sp500_regime_dataset_final.csv     # 사본 (Deep/data가 자동 갱신본)
 ```
+
+> 참고: `Deep/data/`의 데이터셋은 매일 자동 갱신되어 날짜가 더 최신이고,
+> `HMM_Regime_Detection/`의 사본은 STEP 1에서 라벨을 생성한 시점의 원본입니다.
+> 자동 갱신 스크립트가 기존 HMM 라벨을 보존하면서 새 날짜의 피처만 덧붙입니다.
 
 ---
 
@@ -137,7 +142,7 @@ python Deep/code/retrain_deploy.py
 ```
 
 내부 동작:
-- **Phase A:** train 1999~2021, val 2022~2026 → 시드별 최적 에폭·온도 탐색
+- **Phase A:** train 1999-2021, val 2022-2026 → 시드별 최적 에폭·온도 탐색
 - **Phase B:** 1999~ 전체를 Phase A 에폭만큼 고정 학습 (검증 없음)
 - 시드 [0,1,2] 3개 학습 → 앙상블 구성
 
