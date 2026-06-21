@@ -20,7 +20,7 @@ import FinanceDataReader as fdr
 # === 설정 ===
 START_DATE = "1999-01-01"
 END_DATE = datetime.datetime.today().strftime("%Y-%m-%d")
-OUTPUT_PATH = Path(__file__).resolve().parent / "Deep" / "data" / "sp500_regime_dataset_final.csv"
+OUTPUT_PATH = Path(__file__).resolve().parent.parent / "Deep" / "data" / "sp500_regime_dataset_final.csv"
 
 
 # === 1. SPY → Track1 피처 + close ===================================================

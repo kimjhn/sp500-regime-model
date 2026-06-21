@@ -25,7 +25,7 @@ jobs:
       - name: Run refresh
         env:
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
-        run: python refresh_dataset.py
+        run: python web/refresh_dataset.py
 
       - name: Commit if CSV changed
         run: |

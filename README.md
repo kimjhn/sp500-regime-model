@@ -53,7 +53,7 @@ pip install -r requirements.txt
 ### 2) 실행
 
 ```bash
-streamlit run streamlit_app.py
+streamlit run web/streamlit_app.py
 ```
 
 브라우저에서 자동으로 http://localhost:8501 열림.
@@ -69,7 +69,10 @@ streamlit run streamlit_app.py
 ## 프로젝트 구조
 
 ```
-streamlit_app.py                       # 메인 대시보드
+streamlit_app.py                       # Streamlit Cloud 진입점 (web/ 앱 실행 런처)
+web/                                   # 프론트 / 운영 스크립트
+├── streamlit_app.py                   #   대시보드 (실제 코드)
+└── refresh_dataset.py                 #   데이터 자동 갱신 스크립트
 requirements.txt                       # 런타임 의존성
 README.md                              # 본 문서
 
