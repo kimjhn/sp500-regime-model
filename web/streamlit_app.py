@@ -27,6 +27,9 @@ REGIME_SCALE = alt.Scale(domain=ORDER, range=[COLOR[i] for i in range(C.N_REGIME
 STRAT_NAME = "레짐 내비게이터"
 STRAT_SCALE = alt.Scale(domain=[STRAT_NAME, "Buy&Hold"], range=["#2a9d8f", "#9aa3ad"])
 BACKTEST_START = "2019-01-01"   # 2020 코로나 폭락을 포함해 방어 효과가 보이도록
+# 데이터는 GitHub에서 매일 갱신되므로, 저장소 raw 파일을 직접 읽어 재배포 없이 최신을 반영.
+DATA_URL = ("https://raw.githubusercontent.com/kimjhn/sp500-regime-model/"
+            "main/Deep/data/sp500_regime_dataset_final.csv")
 
 SCORE_OPTS = {"A (보수)": 0, "B (중립)": 1, "C (공격)": 2}
 LEV_OPTS = {"안 씀 (≤100%)": "A", "약간 (~130%)": "B", "적극 (~200%)": "C"}
@@ -41,9 +44,13 @@ def get_ensemble():
     return S.load_ensemble()
 
 
-@st.cache_data(show_spinner="데이터 로딩...")
+@st.cache_data(ttl=3600, show_spinner="데이터 로딩...")
 def get_features():
-    return S.load_features()
+    # 1시간마다 GitHub 최신 CSV를 다시 읽는다. 네트워크 실패 시 로컬 파일로 폴백.
+    try:
+        return S.load_features(path=DATA_URL)
+    except Exception:
+        return S.load_features()
 
 
 @st.cache_data(show_spinner="과거 구간 추론...")
